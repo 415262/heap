@@ -1,0 +1,109 @@
+//Begun 9/21/2023 by Ethan Larson
+#include <iostream>
+/*
+
+TO DO LIST:
+ADD VERTICAL WINS (use &&, think harder not smarter)
+ADD HORIZONTAL WINS
+ADD DIAGNOL WINS
+COUNT WINS AND LOOP GAME
+
+
+ */
+
+using namespace std;
+
+
+char board[3][3];
+
+char player = 'X';
+bool isPlaying = true;
+
+char input[5];
+
+bool checkTie(char board[3][3]);
+bool checkWin(char board[3][3], char player);
+void printboard();
+
+int main() {
+
+  for (int i = 0; i < 3; i++){
+    for (int j = 0; j < 3; j++) {
+      board[i][j] = ' ';
+    }
+  }
+  
+  while (isPlaying) {
+
+    printboard();
+
+    cout << "It is Player " << player << " turn." << endl;
+    cin.get(input, 5);
+    cin.get();
+
+    /*if (input == "end") {
+      cout << "ended" <<endl;
+      return 0;
+      }
+      else if (input == "xwins") {
+	cout << "x wins";
+	isPlaying = false;
+      }
+      else if (input == "owins") {
+	cout << "o wins";
+	isPlaying = false;
+      }
+    */
+    
+    while (board[input[0]-97][input[1]-49] == 'X' || board[input[0]-97][input[1]-49] == 'O') {
+      cout << "Invalid input." << endl;
+      printboard();
+      cout << "It is Player " << player << " turn." << endl;
+      cin >> input;
+    }
+
+    board[input[0]-97][input[1]-49] = player;
+    
+    if (checkWin(board, player) == true) {
+      isPlaying = false;
+    }
+
+    if (checkTie(board)) {
+      isPlaying = false;
+    }
+    if (player == 'X') {
+      player = 'O';
+    }
+    else {
+      player = 'X';
+    }
+
+  }
+  cout << "ended";
+  return 0;
+}
+
+void printboard() {
+  cout << "  1 2 3" << '\n';
+  cout << "a " << board[0][0] << " " << board[0][1] << " " << board[0][2] << endl;
+  cout << "b " << board[1][0] << " " << board[1][1] << " " << board[1][2] << endl;
+  cout << "c " << board[2][0] << " " << board[2][1] << " " << board[2][2] << endl;
+}
+
+bool checkTie(char board[3][3]) {
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      if (board[i][j] == ' ') {
+	//cout << "not a tie";  <- used for debug
+	return false;
+      } 
+    }
+  }
+  //cout << "is a tie"; <- used for debug
+  return true;
+}
+
+bool checkWin(char board[3][3], char player) {
+  //cout << "Player " << player << " did not win." << endl; <- used for debug
+  return false;
+}

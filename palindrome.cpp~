@@ -1,0 +1,37 @@
+//Created 9/13/2023 by Ethan Larson
+//tolowercase guide by Safa Mulani: digitalocean.com/community/tutorials/string-uppercase-lowercase-c-plus-plus
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main() {
+
+  char input[81];
+  char normal[81];
+  char reversed[81];
+  cin.get(input, 81);
+  cin.get();
+  int count = 0;
+
+  for (int i = 0; i < strlen(input); i++) {
+    input[i] = tolower(input[81]);
+  }
+
+  cout << input << endl;
+  
+
+  for (int i = 0; i < 81; i++) {
+    if (input[i] != '\0') {
+      if (input[i] <= 122 && input[i] >= 61) {
+	normal[count] = input[i];
+	count++;
+      }
+    }
+  }
+  normal[81] = '\0';
+
+  cout << normal << endl;
+  
+  return 0;
+}
