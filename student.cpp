@@ -19,6 +19,8 @@ struct Student {
   float gpa;
 };
 
+bool isRunning = true;
+
 string input; //input checks for the main functions, like ADD, PRINT, DELETE, and QUIT
 int input2; //input2 checks for ID in the deleteStudent() fuction
 
@@ -28,22 +30,24 @@ vector<Student*>::iterator pointer; //Iterator pointer to allow travelling/manip
 int main() {
 
   cout << "Begin process" << endl;
-  
-  cin >> input;
-  
-  if (input == "add" || input == "ADD") {
-    addStudent();
-  }
-  if (input == "print" || input == "PRINT") {
-    printList();
-  }
-  if (input == "delete" || input == "DELETE") {
-    deleteStudent();
-  }
-  if (input == "quit" || input == "QUIT") {
-    return 0;
-  }
+
+  while (isRunning) {
+    cin >> input;
     
+    if (input == "add" || input == "ADD") {
+      addStudent();
+    }
+    if (input == "print" || input == "PRINT") {
+      printList();
+    }
+    if (input == "delete" || input == "DELETE") {
+      deleteStudent();
+    }
+    if (input == "quit" || input == "QUIT") {
+      return 0;
+    }
+
+  }
   
 }
 
